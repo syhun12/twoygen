@@ -1,18 +1,69 @@
 import Link from "next/link";
-import SubHero from "@/components/SubHero";
-import { businessAreas } from "@/lib/siteData";
+
+const areas = [
+  {
+    id: "valve", title: "Valve", image: "/assets/product-cryogenic.svg",
+    lines: ["게이트, 버터플라이, 글로브, 볼 밸브", "극저온 및 고압 드롭 제어 밸브"],
+    bullets: ["LNG, LIN, LH2, Methanol, Ammonia 등 다양한 유체 대응", "극저온(-196℃) ~ 고온/고압 환경 대응", "고객 사양에 최적화된 설계 및 제작"],
+  },
+  {
+    id: "engineering", title: "Technical Support &\nEngineering Service", image: "/assets/hero-reference.svg",
+    lines: ["밸브 유동·응력 해석 및 설계 평가", "LNG 밸브 재료·구조 설계"],
+    bullets: ["장비 설계·제작·유지보수", "발전·조선 분야 R&D 및 기술 지원", "발전 설비·장비 설계 지원"],
+  },
+  {
+    id: "actuator", title: "Actuator", image: "/assets/product-special-gas.svg",
+    lines: ["모터식 액추에이터 (MOV)", "에어 모터식 액추에이터 (AOV)", "공압식 액추에이터 (POV)", "유압식 액추에이터 (HOV)"],
+    bullets: ["다양한 구동 방식 제공", "안정성 및 신뢰성 확보", "고객 환경에 최적화된 제어 솔루션"],
+  },
+  {
+    id: "rnd", title: "R&D", image: "/assets/product-lh2.svg",
+    lines: ["LNG용 양방향 밀봉장치 개발 ('20~'21)", "수소 생산·공급 설비용 자동 제어밸브 개발 ('21~)"],
+    bullets: ["액체 수소용 자동 제어밸브 개발 (21.06~23.05)", "극저온 액화가스용 능동 제어밸브 개발 (23.07~25.06)"],
+  },
+];
+
+const rndRows = [
+  ["2020 ~ 2021", "LNG용 양방향 밀봉장치 개발", "2020.01 ~ 2021.12", "LNG용 환경에서 양방향 밀봉이 가능한 밸브 구조 및 밀봉 기술 개발", "한국가스공사"],
+  ["2021 ~ 현재", "수소 생산·공급 설비용 자동 제어밸브 개발", "2021.01 ~ 진행중", "수소 생산·공급 설비에 적용 가능한 자동 제어밸브 개발", "한국가스공사"],
+  ["2021.06 ~ 2023.05", "액체 수소용 자동 제어밸브 개발", "2021.06 ~ 2023.05", "액체 수소 환경에 적합한 자동 제어밸브 설계 및 성능 검증", "산업통상자원부"],
+  ["2023.07 ~ 2025.06", "극저온 액화가스용 능동 제어밸브 개발", "2023.07 ~ 2025.06", "극저온 액화가스 환경에서 능동 제어가 가능한 밸브 개발 및 실증", "중소벤처기업부"],
+];
 
 export default function BusinessPage() {
-  return <>
-    <SubHero eyebrow="사업분야" title="Business Area" description="제품 중심이 아니라 고객의 운전 조건과 기술 대응 범위를 기준으로 사업영역을 설명합니다." />
-    <section className="page-shell">
-      <div className="container">
-        <div className="content-title"><span className="eyebrow">What We Do</span><h2>설계·제작·제어·연구개발까지<br />하나의 흐름으로 연결합니다.</h2><p>투와이젠의 4대 사업영역은 제품과 기술서비스를 유기적으로 연결해 프로젝트 대응력을 높이는 데 초점을 둡니다.</p></div>
-        <div className="business-grid">
-          {businessAreas.map((item) => <article className="business-card" data-no={item.no} id={item.id} key={item.id}><div className="card-icon">{item.icon}</div><h3>{item.title}</h3><p>{item.copy}</p><p style={{marginTop:12, color:"#1268ad"}}>{item.detail}</p></article>)}
+  return (
+    <div id="top" className="reference-page">
+      <section className="simple-page-head">
+        <div className="container">
+          <div className="simple-breadcrumb"><Link href="/">⌂</Link><span>›</span><span>사업분야</span><span>›</span><b>사업분야</b></div>
+          <h1>사업분야</h1>
+          <p>(주)투와이젠은 극저온·고압·가스 분야의 핵심 기술 역량을 바탕으로<br />고객 맞춤형 솔루션을 제공합니다.</p>
         </div>
-      </div>
-    </section>
-    <section className="section soft"><div className="container content-grid"><div className="image-panel"></div><div className="prose"><span className="eyebrow">Engineering Workflow</span><h2>요구조건을 제품 사양으로 변환하는 엔지니어링</h2><p>유체 종류, 운전 온도와 압력, 연결 규격, 제어방식, 적용 표준을 검토한 뒤 적합한 제품과 설계 범위를 제안합니다.</p><p>필요 시 도면 검토, 재질 선정, 시험 조건, 현장 적용성까지 함께 검토하여 고객이 필요한 기술 정보를 명확하게 확인할 수 있도록 지원합니다.</p><Link className="btn btn-primary" href="/support/contact">프로젝트 상담하기</Link></div></div></section>
-  </>;
+      </section>
+
+      <section className="business-reference-content">
+        <div className="container">
+          <div className="business-reference-grid">
+            {areas.map((area) => (
+              <article className="business-reference-card" id={area.id} key={area.id}>
+                <div className="business-reference-image"><img src={area.image} alt={area.title.replace("\n", " ")} /></div>
+                <div className="business-reference-text">
+                  <h2>{area.title.split("\n").map((part, i) => <span key={part}>{part}{i === 0 && area.title.includes("\n") ? <br /> : null}</span>)}</h2><i></i>
+                  {area.lines.map((line) => <p key={line}>{line}</p>)}
+                  <ul>{area.bullets.map((line) => <li key={line}>{line}</li>)}</ul>
+                </div>
+              </article>
+            ))}
+          </div>
+
+          <div className="rnd-performance">
+            <h2>R&D 실적</h2>
+            <div className="responsive-table"><table><thead><tr><th>연도</th><th>과제명</th><th>과제 기간</th><th>주요 내용</th><th>발주처</th></tr></thead><tbody>{rndRows.map((row) => <tr key={row[0] + row[1]}>{row.map((cell) => <td key={cell}>{cell}</td>)}</tr>)}</tbody></table></div>
+          </div>
+
+          <div className="business-message"><span>♙</span><p><b>(주)투와이젠은 지속적인 연구개발과 기술혁신을 통해</b><br />에너지 산업의 미래를 선도하는 기업이 되겠습니다.</p></div>
+        </div>
+      </section>
+    </div>
+  );
 }
