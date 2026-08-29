@@ -1,140 +1,111 @@
 import Link from "next/link";
-import { businessAreas, products, projects } from "@/lib/siteData";
+import { businessAreas, products } from "@/lib/siteData";
+
+const productImages = {
+  cryogenic: "/assets/product-cryogenic.svg",
+  "special-gas": "/assets/product-special-gas.svg",
+  "liquid-hydrogen": "/assets/product-lh2.svg",
+  "high-temp": "/assets/product-high-temp.svg",
+  "back-wash-filter": "/assets/product-filter.svg",
+};
+
+const technologyItems = [
+  ["極저온 기술", "-253℃ 액화수소 밸브", "-196℃ LNG, LN₂ 밸브", "⌁"],
+  ["고압 가스 대응", "수소가스 밸브", "최대 1000bar 적용", "◴"],
+  ["고온·고압 제어", "고온·고압 제어밸브", "최대 600℃ / 500bar", "◇"],
+  ["특허 & 인증", "핵심 기술 특허 보유", "각종 인증 및 등록 보유", "▤"],
+];
+
+const certs = [
+  ["ISO 9001", "품질경영시스템"], ["벤처기업확인서", "Venture Company"], ["소재·부품·장비", "전문기업 확인서"], ["특허 제10-2295871호", "가스용 밸브 밀봉장치"], ["특허 제10-2509774호", "극저온 액화가스용 밸브"], ["KGS-AA335 / AA317", "제조등록 및 인증"],
+];
+
+const refs = [
+  ["고성 LNG 벙커링 설비용", "초저온 밸브 공급", "LNG"],
+  ["액화수소 설비용", "제어밸브 공급", "LH₂"],
+  ["인도 원전용 BW Filter", "설계 및 공급", "FILTER"],
+  ["극저온·초고압(700bar)", "액화가스용 밸브", "H₂"],
+  ["액화 암모니아 가스용", "자동밸브 시제품", "NH₃"],
+];
 
 export default function HomePage() {
   return (
-    <>
-      <section className="main-hero">
-        <div className="container hero-grid">
-          <div className="hero-copy">
-            <span className="hero-kicker">SPECIAL VALVE & ENGINEERING SOLUTION</span>
-            <h1>Technical Innovation,<br />Sustainable Tomorrow</h1>
-            <p>극저온·고압 가스 환경에서 요구되는 신뢰성과 정밀한 제어 성능. 투와이젠은 설계부터 제작, 시험, 기술지원까지 산업 현장에 필요한 밸브 솔루션을 제공합니다.</p>
-            <div className="hero-tags">
-              <span>LNG</span><span>LN₂</span><span>LH₂</span><span>Methanol</span><span>Ammonia</span><span>Hydrogen</span>
+    <div id="top">
+      <section className="reference-hero">
+        <div className="container reference-hero-inner">
+          <div className="reference-hero-copy">
+            <h1>Technical Innovation,<br /><em>Sustainable Tomorrow</em></h1>
+            <h2>LNG · LN2 · LH2 · Methanol · Ammonia<br />Special Valve for Gas</h2>
+            <p>투와이젠은 최고 수준의 기술력과 품질로<br />에너지 산업의 새로운 내일을 열어갑니다.</p>
+            <div className="reference-hero-actions">
+              <Link href="/support/contact" className="ref-btn primary">제품 문의하기 <span>→</span></Link>
+              <Link href="/support/library" className="ref-btn outline">카탈로그 다운로드 <span>↓</span></Link>
             </div>
-            <div className="hero-actions">
-              <Link className="btn btn-green" href="/products">제품 보기 <span>→</span></Link>
-              <Link className="btn btn-outline" href="/support/library">카탈로그 다운로드</Link>
-              <Link className="btn btn-outline" href="/support/contact">기술 문의</Link>
-            </div>
+            <div className="hero-pagination"><b>01</b><i></i><span>02</span><i></i><span>03</span></div>
           </div>
-          <div className="hero-orbit" aria-hidden="true">
-            <div className="orbit-center">Extreme<br />Environment</div>
-            <div className="orbit-chip">LNG</div><div className="orbit-chip">LN₂</div><div className="orbit-chip">LH₂</div><div className="orbit-chip">NH₃</div><div className="orbit-chip">H₂</div>
+
+          <div className="reference-hero-visual">
+            <img src="/assets/hero-reference.svg" alt="투와이젠 밸브 및 산업 설비 이미지" />
+          </div>
+
+          <div className="gas-rail" aria-label="적용 유체">
+            {[["LNG","◉"],["LN2","◇"],["LH2","◌"],["Methanol","△"],["Ammonia","♢"]].map(([name, icon]) => <div key={name}><b>{icon}</b><span>{name}</span></div>)}
           </div>
         </div>
-        <div className="hero-business-strip">
+      </section>
+
+      <section className="business-strip-section">
+        <div className="container business-strip">
+          <div className="business-strip-title"><strong>BUSINESS<br />AREA</strong><i></i></div>
           {businessAreas.map((item) => (
-            <Link className="hero-business-item" href={`/business#${item.id}`} key={item.id}>
-              <div className="mini-icon">{item.icon}</div>
-              <div><strong>{item.title}</strong><span>{item.copy}</span></div>
+            <Link href={`/business#${item.id}`} className="business-strip-item" key={item.id}>
+              <span className="line-icon">{item.icon}</span>
+              <div><strong>{item.title === "Technical Support & Engineering Service" ? "Engineering Service" : item.title}</strong><p>{item.id === "valve" ? "고성능 특수 밸브\n설계·제작" : item.id === "actuator" ? "정밀 액추에이터\n설계·제작" : item.id === "engineering" ? "기술지원 및 엔지니어링\n서비스" : "연구개발을 통한\n기술 혁신"}</p></div>
             </Link>
           ))}
         </div>
       </section>
 
-      <section className="section">
+      <section className="home-section products-section">
         <div className="container">
-          <div className="section-head">
-            <div className="section-title">
-              <span className="eyebrow">Business Area</span>
-              <h2>산업의 극한 조건을 이해하는<br />엔지니어링 파트너</h2>
-              <p>제품만 공급하는 것이 아니라 운전 조건과 적용 환경을 검토하여 필요한 기술 범위를 함께 제안합니다.</p>
-            </div>
-            <Link className="text-link" href="/business">사업분야 전체보기 <span>→</span></Link>
-          </div>
-          <div className="business-grid">
-            {businessAreas.map((item) => (
-              <Link id={item.id} className="business-card" href={`/business#${item.id}`} data-no={item.no} key={item.id}>
-                <div className="card-icon">{item.icon}</div>
-                <h3>{item.title}</h3>
-                <p>{item.copy}</p>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="section soft">
-        <div className="container">
-          <div className="section-head">
-            <div className="section-title">
-              <span className="eyebrow">Core Products</span>
-              <h2>에너지 산업을 위한<br />전문 제품 포트폴리오</h2>
-              <p>LNG, 수소, 암모니아, 발전·플랜트까지 다양한 유체와 운전 조건에 대응합니다.</p>
-            </div>
-            <Link className="text-link" href="/products">제품 전체보기 <span>→</span></Link>
-          </div>
-          <div className="product-grid">
+          <div className="ref-section-heading"><h2>PRODUCTS</h2><i></i></div>
+          <div className="ref-product-grid">
             {products.map((product) => (
-              <Link className="product-card" href={`/products/${product.slug}`} key={product.slug}>
-                <div className="product-visual"><div className="valve-shape"></div></div>
-                <div className="product-card-body">
-                  <small>{product.kicker}</small>
+              <Link className="ref-product-card" href={`/products/${product.slug}`} key={product.slug}>
+                <div className="ref-product-image"><img src={productImages[product.slug]} alt={product.title} /></div>
+                <div className="ref-product-body">
                   <h3>{product.title}</h3>
-                  <p>{product.temperature} · {product.pressure}</p>
+                  <p>{product.slug === "cryogenic" ? "극저온 밸브\n-196℃ 환경 대응" : product.slug === "special-gas" ? "가스용 특수 밸브\nLPG, NG, H2, Methanol, Ammonia 등 적용" : product.slug === "liquid-hydrogen" ? "액화수소용 밸브\n-253℃ 초극저온 환경 대응" : product.slug === "high-temp" ? "고온·고압 제어밸브\n최대 600℃ / 500bar 환경 대응" : "역세척 여과장치\n현장 및 플랜트 적용 수출형 제품"}</p>
                 </div>
               </Link>
             ))}
           </div>
+          <div className="center-more"><Link href="/products">전체 제품 보기 <span>→</span></Link></div>
         </div>
       </section>
 
-      <section className="section navy">
-        <div className="container tech-band">
-          <div>
-            <span className="eyebrow light">Technology Highlight</span>
-            <div className="section-title">
-              <h2>Extreme Environment<br />Valve Technology</h2>
-              <p>극저온부터 초고압, 고온 환경까지 핵심 운전 조건을 수치와 검증 체계로 설명합니다.</p>
-            </div>
-            <div className="tech-list">
-              <Link href="/technology/cryogenic">극저온·초고압 기술 <span>→</span></Link>
-              <Link href="/technology/engineering">설계개발·엔지니어링 <span>→</span></Link>
-              <Link href="/technology/quality">품질·시험·인증 체계 <span>→</span></Link>
-            </div>
-          </div>
-          <div className="tech-metrics">
-            <div className="tech-metric"><strong>-253℃</strong><span>LIQUID HYDROGEN</span></div>
-            <div className="tech-metric"><strong>1000 bar</strong><span>HYDROGEN GAS</span></div>
-            <div className="tech-metric"><strong>600℃</strong><span>HIGH TEMPERATURE</span></div>
-            <div className="tech-metric"><strong>ISO 9001</strong><span>QUALITY SYSTEM</span></div>
-          </div>
+      <section className="technology-strip">
+        <div className="container technology-strip-inner">
+          <div className="technology-title"><strong>TWOYGEN TECHNOLOGY</strong><i></i></div>
+          {technologyItems.map(([title, l1, l2, icon]) => <Link href="/technology/cryogenic" className="technology-strip-item" key={title}><b>{icon}</b><div><strong>{title}</strong><p>{l1}<br />{l2}</p></div></Link>)}
         </div>
       </section>
 
-      <section className="section">
+      <section className="home-section certification-section">
         <div className="container">
-          <div className="section-head">
-            <div className="section-title">
-              <span className="eyebrow">Reference</span>
-              <h2>현장에서 검증되는<br />투와이젠의 기술</h2>
-              <p>대표 공급·개발 프로젝트를 간결한 카드 형태로 확인할 수 있습니다.</p>
-            </div>
-            <Link className="text-link" href="/performance">납품실적 보기 <span>→</span></Link>
-          </div>
-          <div className="project-grid">
-            {projects.slice(0, 3).map((project) => (
-              <Link className="project-card" href={`/performance/${project.slug}`} key={project.slug}>
-                <div className="project-image"></div>
-                <div className="project-body">
-                  <div className="project-meta"><span>{project.year}</span><span>{project.country}</span></div>
-                  <h3>{project.title}</h3>
-                  <p>{project.summary}</p>
-                </div>
-              </Link>
-            ))}
-          </div>
+          <div className="ref-section-heading"><h2>CERTIFICATION & PATENTS</h2><i></i></div>
+          <div className="cert-row">{certs.map(([title, desc], idx) => <Link href="/company/certification" className="cert-mini" key={title}><div className="certificate-paper"><span>{idx < 3 ? "CERTIFICATE" : "PATENT"}</span><b>TWOYGEN</b></div><strong>{title}</strong><p>{desc}</p></Link>)}</div>
+          <div className="center-more"><Link href="/company/certification">인증·특허 더보기 <span>→</span></Link></div>
         </div>
       </section>
 
-      <section className="cta-band">
-        <div className="container cta-band-inner">
-          <div><span className="eyebrow light">Contact</span><strong>프로젝트 조건에 맞는 제품을 함께 검토해보세요.</strong><p>유체, 온도, 압력, 규격을 알려주시면 적합한 제품과 기술 대응 범위를 확인할 수 있습니다.</p></div>
-          <div className="cta-actions"><Link className="btn btn-green" href="/support/contact">기술 문의하기</Link><Link className="btn btn-outline" href="/support/library">자료 다운로드</Link></div>
+      <section className="home-section projects-section">
+        <div className="container">
+          <div className="ref-section-heading"><h2>PROJECTS</h2><i></i></div>
+          <div className="ref-project-grid">{refs.map(([title, line, tag], idx) => <Link href="/performance" className={`ref-project-card project-bg-${idx + 1}`} key={title}><div className="ref-project-thumb"><span>{tag}</span></div><h3>{title}<br /><b>{line}</b></h3></Link>)}</div>
+          <div className="center-more"><Link href="/performance">납품실적 더보기 <span>→</span></Link></div>
         </div>
       </section>
-    </>
+    </div>
   );
 }
