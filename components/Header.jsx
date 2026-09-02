@@ -19,6 +19,8 @@ export default function Header() {
     return false;
   };
 
+  const hasSubmenu = (group) => group.label !== "사업분야" && group.items?.length > 0;
+
   return (
     <header className="site-header">
       <div className="container header-main">
@@ -28,15 +30,17 @@ export default function Header() {
 
         <nav className="desktop-nav" aria-label="주 메뉴">
           {navGroups.map((group) => (
-            <div className="nav-group" key={group.label}>
+            <div className={`nav-group ${hasSubmenu(group) ? "has-submenu" : "no-submenu"}`} key={group.label}>
               <Link className={`nav-link ${isActive(group) ? "active" : ""}`} href={group.href}>
                 {group.label === "고객지원" ? "공지/문의" : group.label}
               </Link>
-              <div className="mega-menu compact">
-                {group.items.map((item) => (
-                  <Link key={item.href} href={item.href}>{item.label}</Link>
-                ))}
-              </div>
+              {hasSubmenu(group) && (
+                <div className="mega-menu compact">
+                  {group.items.map((item) => (
+                    <Link key={item.href} href={item.href}>{item.label}</Link>
+                  ))}
+                </div>
+              )}
             </div>
           ))}
         </nav>
@@ -56,15 +60,17 @@ export default function Header() {
         <div className="mobile-nav">
           <div className="container mobile-nav-inner">
             {navGroups.map((group) => (
-              <div className="mobile-group" key={group.label}>
+              <div className={`mobile-group ${hasSubmenu(group) ? "has-submenu" : "no-submenu"}`} key={group.label}>
                 <Link href={group.href} onClick={() => setOpen(false)}>
                   {group.label === "고객지원" ? "공지/문의" : group.label}
                 </Link>
-                <div>
-                  {group.items.map((item) => (
-                    <Link key={item.href} href={item.href} onClick={() => setOpen(false)}>{item.label}</Link>
-                  ))}
-                </div>
+                {hasSubmenu(group) && (
+                  <div>
+                    {group.items.map((item) => (
+                      <Link key={item.href} href={item.href} onClick={() => setOpen(false)}>{item.label}</Link>
+                    ))}
+                  </div>
+                )}
               </div>
             ))}
           </div>
