@@ -1,5 +1,5 @@
-import Link from "next/link";
 import PlaceholderImage from "@/components/PlaceholderImage";
+import SubHero from "@/components/SubHero";
 
 const areas = [
   {
@@ -34,13 +34,11 @@ const rndRows = [
 export default function BusinessPage() {
   return (
     <div id="top" className="reference-page">
-      <section className="simple-page-head">
-        <div className="container">
-          <div className="simple-breadcrumb"><Link href="/">⌂</Link><span>›</span><span>사업분야</span><span>›</span><b>사업분야</b></div>
-          <h1>사업분야</h1>
-          <p>(주)투와이젠은 극저온·고압·가스 분야의 핵심 기술 역량을 바탕으로<br />고객 맞춤형 솔루션을 제공합니다.</p>
-        </div>
-      </section>
+      <SubHero
+        eyebrow="사업분야"
+        title="Business Area"
+        description="극저온·고압·가스 분야의 핵심 기술 역량을 바탕으로 고객 맞춤형 솔루션을 제공합니다."
+      />
 
       <section className="business-reference-content">
         <div className="container">
