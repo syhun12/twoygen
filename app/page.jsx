@@ -1,20 +1,21 @@
 import Link from "next/link";
 import MainHeroCarousel from "@/components/MainHeroCarousel";
+import PlaceholderImage from "@/components/PlaceholderImage";
 import { businessAreas, products } from "@/lib/siteData";
 
 const productImages = {
   cryogenic: "/assets/product-cryogenic.svg",
-  "special-gas": "/assets/product-special-gas.svg",
-  "liquid-hydrogen": "/assets/product-lh2.svg",
   "high-temp": "/assets/product-high-temp.svg",
+  "special-gas": "/assets/product-special-gas.svg",
   "back-wash-filter": "/assets/product-filter.svg",
 };
 
 const technologyItems = [
-  ["극저온 기술", "-253℃ 액화수소 밸브", "-196℃ LNG, LN₂ 밸브", "⌁"],
-  ["고압 가스 대응", "수소가스 밸브", "최대 1000bar 적용", "◴"],
-  ["고온·고압 제어", "고온·고압 제어밸브", "최대 600℃ / 500bar", "◇"],
-  ["특허 & 인증", "핵심 기술 특허 보유", "각종 인증 및 등록 보유", "▤"],
+  { title: "극저온 기술", l1: "-253℃ 액화수소 밸브", l2: "-196℃ LNG, LN₂ 밸브", icon: "⌁", href: "/technology/cryogenic" },
+  { title: "고압 가스 대응", l1: "수소가스 밸브", l2: "최대 1000bar 적용", icon: "◴", href: "/technology/cryogenic" },
+  { title: "고온·고압 제어", l1: "고온·고압 제어밸브", l2: "최대 600℃ / 500bar", icon: "◇", href: "/technology/cryogenic" },
+  { title: "자동제어 기계", l1: "Automation Machinery", l2: "Fluid Device & 자동화 설비", icon: "⚙", href: "/products/automation-machinery" },
+  { title: "특허 & 인증", l1: "핵심 기술 특허 보유", l2: "각종 인증 및 등록 보유", icon: "▤", href: "/company/certification" },
 ];
 
 const certs = [
@@ -23,11 +24,13 @@ const certs = [
 
 const refs = [
   ["고성 LNG 벙커링 설비용", "초저온 밸브 공급", "LNG"],
+  ["인도 원전용 Auto Back Wash Filter", "설계·공급 및 수출", "NUCLEAR"],
+  ["내진·유동·구동해석", "Engineering Service", "ANALYSIS"],
   ["액화수소 설비용", "제어밸브 공급", "LH₂"],
-  ["인도 원전용 BW Filter", "설계 및 공급", "FILTER"],
-  ["극저온·초고압(700bar)", "액화가스용 밸브", "H₂"],
-  ["액화 암모니아 가스용", "자동밸브 시제품", "NH₃"],
+  ["폐어구 무인 반납장치", "자동화기계 제작·공급", "AUTO"],
 ];
+
+const featuredProducts = products.filter((product) => product.featured !== false);
 
 export default function HomePage() {
   return (
@@ -40,7 +43,7 @@ export default function HomePage() {
           {businessAreas.map((item) => (
             <Link href={`/business#${item.id}`} className="business-strip-item" key={item.id}>
               <span className="line-icon">{item.icon}</span>
-              <div><strong>{item.title === "Technical Support & Engineering Service" ? "Engineering Service" : item.title}</strong><p>{item.id === "valve" ? "고성능 특수 밸브\n설계·제작" : item.id === "actuator" ? "정밀 액추에이터\n설계·제작" : item.id === "engineering" ? "기술지원 및 엔지니어링\n서비스" : "연구개발을 통한\n기술 혁신"}</p></div>
+              <div><strong>{item.title === "Technical Support & Engineering Service" ? "Engineering Service" : item.title}</strong><p>{item.id === "valve" ? "고성능 특수 밸브\n설계·제작" : item.id === "automation" ? "자동화기계 및 Fluid Device\n설계·제작" : item.id === "engineering" ? "해석·설계·엔지니어링\n기술지원" : "연구개발을 통한\n기술 혁신"}</p></div>
             </Link>
           ))}
         </div>
@@ -50,12 +53,16 @@ export default function HomePage() {
         <div className="container">
           <div className="ref-section-heading"><h2>PRODUCTS</h2><i></i></div>
           <div className="ref-product-grid">
-            {products.map((product) => (
+            {featuredProducts.map((product) => (
               <Link className="ref-product-card" href={`/products/${product.slug}`} key={product.slug}>
-                <div className="ref-product-image"><img src={productImages[product.slug]} alt={product.title} /></div>
+                <div className="ref-product-image">
+                  {productImages[product.slug]
+                    ? <img src={productImages[product.slug]} alt={product.title} />
+                    : <PlaceholderImage title="제품 이미지" description="자동화기계 대표 이미지 등록 예정" variant="compact" />}
+                </div>
                 <div className="ref-product-body">
                   <h3>{product.title}</h3>
-                  <p>{product.slug === "cryogenic" ? "극저온 밸브\n-196℃ 환경 대응" : product.slug === "special-gas" ? "가스용 특수 밸브\nLPG, NG, H2, Methanol, Ammonia 등 적용" : product.slug === "liquid-hydrogen" ? "액화수소용 밸브\n-253℃ 초극저온 환경 대응" : product.slug === "high-temp" ? "고온·고압 제어밸브\n최대 600℃ / 500bar 환경 대응" : "역세척 여과장치\n현장 및 플랜트 적용 수출형 제품"}</p>
+                  <p>{product.slug === "cryogenic" ? "극저온 밸브\nCryogenic 환경 대응" : product.slug === "high-temp" ? "고온·고압 제어밸브\n최대 600℃ / 500bar" : product.slug === "special-gas" ? "가스용 특수 밸브\nLPG, NG, H2, Methanol, Ammonia" : product.slug === "back-wash-filter" ? "자동 역세척 여과장치\n해수·담수 설비 적용" : "자동화기계\n폐어구 무인 반납장치·파쇄기"}</p>
                 </div>
               </Link>
             ))}
@@ -67,7 +74,7 @@ export default function HomePage() {
       <section className="technology-strip">
         <div className="container technology-strip-inner">
           <div className="technology-title"><strong>TWOYGEN TECHNOLOGY</strong><i></i></div>
-          {technologyItems.map(([title, l1, l2, icon]) => <Link href="/technology/cryogenic" className="technology-strip-item" key={title}><b>{icon}</b><div><strong>{title}</strong><p>{l1}<br />{l2}</p></div></Link>)}
+          {technologyItems.map((item) => <Link href={item.href} className="technology-strip-item" key={item.title}><b>{item.icon}</b><div><strong>{item.title}</strong><p>{item.l1}<br />{item.l2}</p></div></Link>)}
         </div>
       </section>
 
