@@ -4,13 +4,6 @@ import PlaceholderImage from "@/components/PlaceholderImage";
 import { products } from "@/lib/siteData";
 import styles from "./ProductsPage.module.css";
 
-const productImages = {
-  cryogenic: "/assets/product-cryogenic.svg",
-  "high-temp": "/assets/product-high-temp.svg",
-  "special-gas": "/assets/product-special-gas.svg",
-  "back-wash-filter": "/assets/product-filter.svg",
-};
-
 const featuredProducts = products.filter((product) => product.featured !== false);
 
 const summary = [
@@ -67,15 +60,11 @@ export default function ProductsPage() {
               <Link className={styles.card} href={`/products/${product.slug}`} key={product.slug}>
                 <div className={styles.visual}>
                   <span className={styles.number}>{String(index + 1).padStart(2, "0")}</span>
-                  {productImages[product.slug] ? (
-                    <img src={productImages[product.slug]} alt={product.title} />
-                  ) : (
-                    <PlaceholderImage
-                      title="제품 이미지"
-                      description="자동화기계 대표 이미지 등록 예정"
-                      variant="compact"
-                    />
-                  )}
+                  <PlaceholderImage
+                    title="제품 이미지"
+                    description={`${product.title} 대표 이미지 등록 영역`}
+                    variant="compact"
+                  />
                 </div>
 
                 <div className={styles.body}>
