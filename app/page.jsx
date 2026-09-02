@@ -1,4 +1,5 @@
 import Link from "next/link";
+import MainHeroCarousel from "@/components/MainHeroCarousel";
 import { businessAreas, products } from "@/lib/siteData";
 
 const productImages = {
@@ -10,7 +11,7 @@ const productImages = {
 };
 
 const technologyItems = [
-  ["極저온 기술", "-253℃ 액화수소 밸브", "-196℃ LNG, LN₂ 밸브", "⌁"],
+  ["극저온 기술", "-253℃ 액화수소 밸브", "-196℃ LNG, LN₂ 밸브", "⌁"],
   ["고압 가스 대응", "수소가스 밸브", "최대 1000bar 적용", "◴"],
   ["고온·고압 제어", "고온·고압 제어밸브", "최대 600℃ / 500bar", "◇"],
   ["특허 & 인증", "핵심 기술 특허 보유", "각종 인증 및 등록 보유", "▤"],
@@ -31,28 +32,7 @@ const refs = [
 export default function HomePage() {
   return (
     <div id="top">
-      <section className="reference-hero">
-        <div className="container reference-hero-inner">
-          <div className="reference-hero-copy">
-            <h1>Technical Innovation,<br /><em>Sustainable Tomorrow</em></h1>
-            <h2>LNG · LN2 · LH2 · Methanol · Ammonia<br />Special Valve for Gas</h2>
-            <p>투와이젠은 최고 수준의 기술력과 품질로<br />에너지 산업의 새로운 내일을 열어갑니다.</p>
-            <div className="reference-hero-actions">
-              <Link href="/support/contact" className="ref-btn primary">제품 문의하기 <span>→</span></Link>
-              <Link href="/support/library" className="ref-btn outline">카탈로그 다운로드 <span>↓</span></Link>
-            </div>
-            <div className="hero-pagination"><b>01</b><i></i><span>02</span><i></i><span>03</span></div>
-          </div>
-
-          <div className="reference-hero-visual">
-            <img src="/assets/hero-reference.svg" alt="투와이젠 밸브 및 산업 설비 이미지" />
-          </div>
-
-          <div className="gas-rail" aria-label="적용 유체">
-            {[["LNG","◉"],["LN2","◇"],["LH2","◌"],["Methanol","△"],["Ammonia","♢"]].map(([name, icon]) => <div key={name}><b>{icon}</b><span>{name}</span></div>)}
-          </div>
-        </div>
-      </section>
+      <MainHeroCarousel />
 
       <section className="business-strip-section">
         <div className="container business-strip">
