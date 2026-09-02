@@ -4,23 +4,23 @@ import SubHero from "@/components/SubHero";
 const areas = [
   {
     id: "valve", title: "Valve",
-    lines: ["게이트, 버터플라이, 글로브, 볼 밸브", "극저온 및 고압 드롭 제어 밸브"],
-    bullets: ["LNG, LIN, LH2, Methanol, Ammonia 등 다양한 유체 대응", "극저온(-196℃) ~ 고온/고압 환경 대응", "고객 사양에 최적화된 설계 및 제작"],
+    lines: ["게이트, 버터플라이, 글로브, 볼 밸브", "극저온 및 고온·고압 제어밸브"],
+    bullets: ["LNG, LN2, LH2, Methanol, Ammonia 등 다양한 유체 대응", "극저온부터 고온·고압 환경까지 프로젝트 조건 검토", "고객 사양에 최적화된 설계 및 제작"],
+  },
+  {
+    id: "automation", title: "Automation Machinery",
+    lines: ["Auto Back Wash Filter", "폐어구 무인 반납장치", "파쇄기 및 자동화 설비"],
+    bullets: ["Automation Machinery & Fluid Device 사업영역", "현장 목적에 맞춘 자동화 설비 설계·제작", "필터 및 해양 분야 자동화 장비 적용"],
   },
   {
     id: "engineering", title: "Technical Support &\nEngineering Service",
-    lines: ["밸브 유동·응력 해석 및 설계 평가", "LNG 밸브 재료·구조 설계"],
-    bullets: ["장비 설계·제작·유지보수", "발전·조선 분야 R&D 및 기술 지원", "발전 설비·장비 설계 지원"],
-  },
-  {
-    id: "actuator", title: "Actuator",
-    lines: ["모터식 액추에이터 (MOV)", "에어 모터식 액추에이터 (AOV)", "공압식 액추에이터 (POV)", "유압식 액추에이터 (HOV)"],
-    bullets: ["다양한 구동 방식 제공", "안정성 및 신뢰성 확보", "고객 환경에 최적화된 제어 솔루션"],
+    lines: ["내진해석 · 유동해석 · 구동해석", "밸브 및 장비 설계 검토·평가"],
+    bullets: ["Seismic Analysis / Flow Analysis / Actuation Analysis", "발전·원자력·조선 분야 설계 및 기술지원", "장비 설계·제작·시험 및 유지보수 지원"],
   },
   {
     id: "rnd", title: "R&D",
-    lines: ["LNG용 양방향 밀봉장치 개발 ('20~'21)", "수소 생산·공급 설비용 자동 제어밸브 개발 ('21~)"],
-    bullets: ["액체 수소용 자동 제어밸브 개발 (21.06~23.05)", "극저온 액화가스용 능동 제어밸브 개발 (23.07~25.06)"],
+    lines: ["LNG용 양방향 밀봉장치 개발 ('20~'21)", "수소 생산·공급 설비용 자동 제어밸브 개발"],
+    bullets: ["액체 수소용 자동 제어밸브 개발", "극저온 액화가스용 제어밸브 기술개발", "차세대 원자력·자동화 분야 연구개발 확대"],
   },
 ];
 
@@ -37,7 +37,7 @@ export default function BusinessPage() {
       <SubHero
         eyebrow="사업분야"
         title="Business Area"
-        description="극저온·고압·가스 분야의 핵심 기술 역량을 바탕으로 고객 맞춤형 솔루션을 제공합니다."
+        description="Valve, Automation Machinery, Engineering Service, R&D를 중심으로 산업 현장의 요구조건에 맞는 솔루션을 제공합니다."
       />
 
       <section className="business-reference-content">
@@ -60,7 +60,7 @@ export default function BusinessPage() {
             <div className="responsive-table"><table><thead><tr><th>연도</th><th>과제명</th><th>과제 기간</th><th>주요 내용</th><th>발주처</th></tr></thead><tbody>{rndRows.map((row) => <tr key={row[0] + row[1]}>{row.map((cell) => <td key={cell}>{cell}</td>)}</tr>)}</tbody></table></div>
           </div>
 
-          <div className="business-message"><span>♙</span><p><b>(주)투와이젠은 지속적인 연구개발과 기술혁신을 통해</b><br />에너지 산업의 미래를 선도하는 기업이 되겠습니다.</p></div>
+          <div className="business-message"><span>♙</span><p><b>(주)투와이젠은 지속적인 연구개발과 기술혁신을 통해</b><br />에너지·원자력·해양 산업의 미래를 선도하는 기업이 되겠습니다.</p></div>
         </div>
       </section>
     </div>
