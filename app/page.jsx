@@ -3,13 +3,6 @@ import MainHeroCarousel from "@/components/MainHeroCarousel";
 import PlaceholderImage from "@/components/PlaceholderImage";
 import { businessAreas, products } from "@/lib/siteData";
 
-const productImages = {
-  cryogenic: "/assets/product-cryogenic.svg",
-  "high-temp": "/assets/product-high-temp.svg",
-  "special-gas": "/assets/product-special-gas.svg",
-  "back-wash-filter": "/assets/product-filter.svg",
-};
-
 const technologyItems = [
   { title: "극저온 기술", l1: "-253℃ 액화수소 밸브", l2: "-196℃ LNG, LN₂ 밸브", icon: "⌁", href: "/technology/cryogenic" },
   { title: "고압 가스 대응", l1: "수소가스 밸브", l2: "최대 1000bar 적용", icon: "◴", href: "/technology/cryogenic" },
@@ -56,9 +49,7 @@ export default function HomePage() {
             {featuredProducts.map((product) => (
               <Link className="ref-product-card" href={`/products/${product.slug}`} key={product.slug}>
                 <div className="ref-product-image">
-                  {productImages[product.slug]
-                    ? <img src={productImages[product.slug]} alt={product.title} />
-                    : <PlaceholderImage title="제품 이미지" description="자동화기계 대표 이미지 등록 예정" variant="compact" />}
+                  <PlaceholderImage title="제품 이미지" description={`${product.title} 대표 이미지 등록 영역`} variant="compact" />
                 </div>
                 <div className="ref-product-body">
                   <h3>{product.title}</h3>
