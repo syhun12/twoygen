@@ -1,25 +1,9 @@
 .hero {
-  height: 620px;
+  height: 680px;
   position: relative;
   overflow: hidden;
   color: #fff;
-  background:
-    radial-gradient(circle at 72% 42%, rgba(25, 112, 157, .72) 0, rgba(9, 64, 105, .72) 26%, rgba(5, 44, 87, .92) 58%, rgba(3, 29, 62, 1) 100%);
-}
-
-.hero::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background:
-    linear-gradient(90deg, rgba(3, 29, 61, .44), transparent 52%),
-    radial-gradient(circle at 82% 50%, rgba(81, 191, 207, .12), transparent 34%);
-}
-
-.inner {
-  height: 100%;
-  position: relative;
+  background: #031a34;
 }
 
 .slides {
@@ -32,46 +16,74 @@
   inset: 0;
   opacity: 0;
   visibility: hidden;
-  transform: translateX(20px);
-  transition: opacity .7s ease, transform .7s ease, visibility .7s ease;
+  transform: scale(1.018);
+  transition: opacity .8s ease, transform 1.2s ease, visibility .8s ease;
   pointer-events: none;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
 }
 
 .slide.active {
   opacity: 1;
   visibility: visible;
-  transform: translateX(0);
+  transform: scale(1);
   pointer-events: auto;
+}
+
+.shade {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background:
+    linear-gradient(90deg, rgba(2, 18, 39, .94) 0%, rgba(3, 25, 51, .86) 27%, rgba(3, 32, 59, .52) 50%, rgba(2, 23, 43, .22) 72%, rgba(1, 13, 29, .18) 100%),
+    linear-gradient(180deg, rgba(1, 14, 31, .18) 0%, rgba(2, 18, 37, .05) 48%, rgba(1, 13, 28, .48) 100%);
+}
+
+.slideInner {
+  height: 100%;
+  position: relative;
+  z-index: 3;
 }
 
 .copy {
   position: absolute;
   left: 0;
   top: 50%;
-  width: 55%;
-  transform: translateY(-51%);
+  width: min(650px, 58%);
+  transform: translateY(-52%);
   z-index: 4;
+  text-shadow: 0 3px 20px rgba(0, 15, 31, .22);
 }
 
 .eyebrow {
-  display: inline-block;
-  margin-bottom: 17px;
-  color: #a9c1d6;
-  font-size: 9px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 18px;
+  color: #b7cfdf;
+  font-size: 10px;
   font-weight: 700;
-  letter-spacing: .16em;
+  letter-spacing: .17em;
+}
+
+.eyebrow::before {
+  content: "";
+  width: 26px;
+  height: 2px;
+  background: #8fbd3b;
 }
 
 .copy h1 {
-  margin: 0 0 18px;
-  font-size: 52px;
-  line-height: 1.1;
-  letter-spacing: -.04em;
+  margin: 0 0 20px;
+  font-size: 56px;
+  line-height: 1.08;
+  letter-spacing: -.045em;
   font-weight: 700;
 }
 
 .copy h1 em {
-  color: #a8cf4b;
+  color: #a9cf4b;
   font-style: normal;
 }
 
@@ -79,14 +91,15 @@
   margin: 0 0 18px;
   color: #fff;
   font-size: 18px;
-  line-height: 1.5;
+  line-height: 1.55;
+  font-weight: 600;
 }
 
 .copy p {
-  margin: 0 0 28px;
-  color: #d4e1ed;
+  margin: 0 0 30px;
+  color: #d2e0ea;
   font-size: 13px;
-  line-height: 1.75;
+  line-height: 1.8;
 }
 
 .actions {
@@ -96,59 +109,16 @@
 }
 
 .actions :global(.ref-btn) {
-  min-width: 154px;
+  min-width: 156px;
   font-size: 12px;
+  backdrop-filter: blur(3px);
 }
 
-.visual {
-  position: absolute;
-  right: 65px;
-  top: 50%;
-  width: 55%;
-  height: 88%;
-  transform: translateY(-48%);
-  z-index: 2;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-}
-
-.visual::before {
-  content: "";
-  position: absolute;
-  inset: 6% 0 0 6%;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(49, 160, 196, .24), rgba(34, 128, 170, .08) 44%, transparent 68%);
-  filter: blur(2px);
-}
-
-.visual img {
-  position: relative;
-  z-index: 1;
-  display: block;
-}
-
-.visual.wide img {
-  width: 100%;
+.overlay {
   height: 100%;
-  object-fit: cover;
-  object-position: center;
-  mix-blend-mode: screen;
-  opacity: .96;
-}
-
-.visual.product {
-  right: 115px;
-  width: 42%;
-  height: 76%;
-  justify-content: center;
-}
-
-.visual.product img {
-  width: 88%;
-  height: 88%;
-  object-fit: contain;
-  filter: drop-shadow(0 24px 28px rgba(0, 0, 0, .18));
+  position: relative;
+  z-index: 8;
+  pointer-events: none;
 }
 
 .fluids {
@@ -159,20 +129,22 @@
   z-index: 8;
   display: grid;
   gap: 9px;
+  pointer-events: auto;
 }
 
 .fluids div {
   width: 58px;
   min-height: 58px;
-  border: 1px solid rgba(255, 255, 255, .28);
+  border: 1px solid rgba(255, 255, 255, .3);
   border-radius: 50%;
-  background: rgba(4, 39, 75, .18);
-  backdrop-filter: blur(3px);
+  background: rgba(3, 31, 60, .32);
+  backdrop-filter: blur(5px);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  color: #d8edf6;
+  color: #d9edf6;
+  box-shadow: inset 0 0 0 1px rgba(85, 159, 188, .05);
 }
 
 .fluids b {
@@ -187,11 +159,12 @@
   position: absolute;
   left: 0;
   right: 0;
-  bottom: 40px;
+  bottom: 42px;
   z-index: 10;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  pointer-events: auto;
 }
 
 .pagination {
@@ -202,12 +175,12 @@
 
 .pagination button {
   position: relative;
-  width: 76px;
-  height: 28px;
-  padding: 0 48px 0 0;
+  width: 80px;
+  height: 30px;
+  padding: 0 50px 0 0;
   border: 0;
   background: transparent;
-  color: #7596b1;
+  color: #7f9cb4;
   text-align: left;
   font-size: 9px;
   cursor: pointer;
@@ -218,14 +191,14 @@
   position: absolute;
   right: 10px;
   top: 50%;
-  width: 34px;
+  width: 36px;
   height: 2px;
-  background: #53708c;
+  background: rgba(145, 176, 198, .42);
   transition: background .25s ease, width .25s ease;
 }
 
 .pagination button:last-child {
-  width: 26px;
+  width: 28px;
   padding-right: 0;
 }
 
@@ -234,12 +207,12 @@
 }
 
 .pagination button.current {
-  color: #c3d84f;
+  color: #c8da60;
   font-weight: 700;
 }
 
 .pagination button.current::after {
-  background: #b2cf43;
+  background: #a9ca46;
 }
 
 .arrows {
@@ -248,42 +221,38 @@
 }
 
 .arrows button {
-  width: 42px;
-  height: 42px;
-  border: 1px solid rgba(255, 255, 255, .32);
+  width: 44px;
+  height: 44px;
+  border: 1px solid rgba(255, 255, 255, .34);
   border-radius: 50%;
-  background: rgba(3, 38, 72, .18);
+  background: rgba(3, 32, 61, .28);
   color: #fff;
   cursor: pointer;
-  transition: background .2s ease, border-color .2s ease;
+  transition: background .2s ease, border-color .2s ease, transform .2s ease;
+  backdrop-filter: blur(4px);
 }
 
 .arrows button:hover {
-  background: rgba(255, 255, 255, .12);
-  border-color: rgba(255, 255, 255, .62);
+  background: rgba(255, 255, 255, .13);
+  border-color: rgba(255, 255, 255, .7);
+  transform: translateY(-1px);
 }
 
 @media (max-width: 1080px) {
   .hero {
-    height: 580px;
+    height: 620px;
   }
 
   .copy {
-    width: 58%;
+    width: 60%;
   }
 
   .copy h1 {
-    font-size: 46px;
+    font-size: 48px;
   }
 
-  .visual {
-    right: 25px;
-    width: 54%;
-  }
-
-  .visual.product {
-    right: 55px;
-    width: 40%;
+  .slide {
+    background-position: 58% center;
   }
 
   .fluids {
@@ -296,18 +265,29 @@
     height: 650px;
   }
 
+  .slide {
+    background-position: 67% center;
+  }
+
+  .shade {
+    background:
+      linear-gradient(90deg, rgba(2, 18, 39, .94) 0%, rgba(3, 25, 51, .83) 54%, rgba(3, 25, 51, .46) 100%),
+      linear-gradient(180deg, rgba(2, 18, 39, .08), rgba(1, 13, 28, .62));
+  }
+
   .copy {
-    top: 44%;
-    width: 100%;
+    top: 45%;
+    width: 92%;
     transform: translateY(-50%);
   }
 
   .eyebrow {
     font-size: 8px;
+    letter-spacing: .12em;
   }
 
   .copy h1 {
-    font-size: 38px;
+    font-size: 39px;
   }
 
   .copy h2 {
@@ -316,17 +296,6 @@
 
   .copy p {
     font-size: 12px;
-  }
-
-  .visual,
-  .visual.product {
-    right: -70px;
-    top: auto;
-    bottom: -90px;
-    width: 64%;
-    height: 47%;
-    transform: none;
-    opacity: .4;
   }
 
   .bottomControls {
