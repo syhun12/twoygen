@@ -28,8 +28,8 @@ export default function PerformancePage() {
         <div className="container">
           <div className="performance-filters">
             <label><span>연도</span><select defaultValue="all"><option value="all">전체</option><option>2026</option><option>2025</option></select></label>
-            <label><span>구분</span><select defaultValue="all"><option value="all">전체</option><option>공급·수출</option><option>설계개발</option><option>사업선정</option></select></label>
-            <label><span>분야</span><select defaultValue="all"><option value="all">전체</option><option>Valve</option><option>Filter</option><option>R&D</option></select></label>
+            <label><span>구분</span><select defaultValue="all"><option value="all">전체</option><option>공급·수출</option><option>제작·공급</option><option>설계개발</option><option>사업선정</option></select></label>
+            <label><span>분야</span><select defaultValue="all"><option value="all">전체</option><option>Valve</option><option>Filter</option><option>Automation Machinery</option><option>R&D</option></select></label>
             <div className="performance-search"><input placeholder="실적명, 기관명, 제품명 검색" /><button type="button" aria-label="검색">⌕</button></div>
           </div>
 
