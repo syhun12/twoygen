@@ -1,0 +1,340 @@
+.hero {
+  height: 620px;
+  position: relative;
+  overflow: hidden;
+  color: #fff;
+  background:
+    radial-gradient(circle at 72% 42%, rgba(25, 112, 157, .72) 0, rgba(9, 64, 105, .72) 26%, rgba(5, 44, 87, .92) 58%, rgba(3, 29, 62, 1) 100%);
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, rgba(3, 29, 61, .44), transparent 52%),
+    radial-gradient(circle at 82% 50%, rgba(81, 191, 207, .12), transparent 34%);
+}
+
+.inner {
+  height: 100%;
+  position: relative;
+}
+
+.slides {
+  position: absolute;
+  inset: 0;
+}
+
+.slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateX(20px);
+  transition: opacity .7s ease, transform .7s ease, visibility .7s ease;
+  pointer-events: none;
+}
+
+.slide.active {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(0);
+  pointer-events: auto;
+}
+
+.copy {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 55%;
+  transform: translateY(-51%);
+  z-index: 4;
+}
+
+.eyebrow {
+  display: inline-block;
+  margin-bottom: 17px;
+  color: #a9c1d6;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: .16em;
+}
+
+.copy h1 {
+  margin: 0 0 18px;
+  font-size: 52px;
+  line-height: 1.1;
+  letter-spacing: -.04em;
+  font-weight: 700;
+}
+
+.copy h1 em {
+  color: #a8cf4b;
+  font-style: normal;
+}
+
+.copy h2 {
+  margin: 0 0 18px;
+  color: #fff;
+  font-size: 18px;
+  line-height: 1.5;
+}
+
+.copy p {
+  margin: 0 0 28px;
+  color: #d4e1ed;
+  font-size: 13px;
+  line-height: 1.75;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.actions :global(.ref-btn) {
+  min-width: 154px;
+  font-size: 12px;
+}
+
+.visual {
+  position: absolute;
+  right: 65px;
+  top: 50%;
+  width: 55%;
+  height: 88%;
+  transform: translateY(-48%);
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.visual::before {
+  content: "";
+  position: absolute;
+  inset: 6% 0 0 6%;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(49, 160, 196, .24), rgba(34, 128, 170, .08) 44%, transparent 68%);
+  filter: blur(2px);
+}
+
+.visual img {
+  position: relative;
+  z-index: 1;
+  display: block;
+}
+
+.visual.wide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  mix-blend-mode: screen;
+  opacity: .96;
+}
+
+.visual.product {
+  right: 115px;
+  width: 42%;
+  height: 76%;
+  justify-content: center;
+}
+
+.visual.product img {
+  width: 88%;
+  height: 88%;
+  object-fit: contain;
+  filter: drop-shadow(0 24px 28px rgba(0, 0, 0, .18));
+}
+
+.fluids {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 8;
+  display: grid;
+  gap: 9px;
+}
+
+.fluids div {
+  width: 58px;
+  min-height: 58px;
+  border: 1px solid rgba(255, 255, 255, .28);
+  border-radius: 50%;
+  background: rgba(4, 39, 75, .18);
+  backdrop-filter: blur(3px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #d8edf6;
+}
+
+.fluids b {
+  font-size: 13px;
+}
+
+.fluids span {
+  font-size: 8px;
+}
+
+.bottomControls {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 40px;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.pagination {
+  display: flex;
+  align-items: center;
+  gap: 0;
+}
+
+.pagination button {
+  position: relative;
+  width: 76px;
+  height: 28px;
+  padding: 0 48px 0 0;
+  border: 0;
+  background: transparent;
+  color: #7596b1;
+  text-align: left;
+  font-size: 9px;
+  cursor: pointer;
+}
+
+.pagination button::after {
+  content: "";
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  width: 34px;
+  height: 2px;
+  background: #53708c;
+  transition: background .25s ease, width .25s ease;
+}
+
+.pagination button:last-child {
+  width: 26px;
+  padding-right: 0;
+}
+
+.pagination button:last-child::after {
+  display: none;
+}
+
+.pagination button.current {
+  color: #c3d84f;
+  font-weight: 700;
+}
+
+.pagination button.current::after {
+  background: #b2cf43;
+}
+
+.arrows {
+  display: flex;
+  gap: 8px;
+}
+
+.arrows button {
+  width: 42px;
+  height: 42px;
+  border: 1px solid rgba(255, 255, 255, .32);
+  border-radius: 50%;
+  background: rgba(3, 38, 72, .18);
+  color: #fff;
+  cursor: pointer;
+  transition: background .2s ease, border-color .2s ease;
+}
+
+.arrows button:hover {
+  background: rgba(255, 255, 255, .12);
+  border-color: rgba(255, 255, 255, .62);
+}
+
+@media (max-width: 1080px) {
+  .hero {
+    height: 580px;
+  }
+
+  .copy {
+    width: 58%;
+  }
+
+  .copy h1 {
+    font-size: 46px;
+  }
+
+  .visual {
+    right: 25px;
+    width: 54%;
+  }
+
+  .visual.product {
+    right: 55px;
+    width: 40%;
+  }
+
+  .fluids {
+    display: none;
+  }
+}
+
+@media (max-width: 760px) {
+  .hero {
+    height: 650px;
+  }
+
+  .copy {
+    top: 44%;
+    width: 100%;
+    transform: translateY(-50%);
+  }
+
+  .eyebrow {
+    font-size: 8px;
+  }
+
+  .copy h1 {
+    font-size: 38px;
+  }
+
+  .copy h2 {
+    font-size: 14px;
+  }
+
+  .copy p {
+    font-size: 12px;
+  }
+
+  .visual,
+  .visual.product {
+    right: -70px;
+    top: auto;
+    bottom: -90px;
+    width: 64%;
+    height: 47%;
+    transform: none;
+    opacity: .4;
+  }
+
+  .bottomControls {
+    bottom: 24px;
+  }
+
+  .arrows button {
+    width: 38px;
+    height: 38px;
+  }
+}
