@@ -1,23 +1,24 @@
 import Link from "next/link";
+import PlaceholderImage from "@/components/PlaceholderImage";
 
 const areas = [
   {
-    id: "valve", title: "Valve", image: "/assets/product-cryogenic.svg",
+    id: "valve", title: "Valve",
     lines: ["게이트, 버터플라이, 글로브, 볼 밸브", "극저온 및 고압 드롭 제어 밸브"],
     bullets: ["LNG, LIN, LH2, Methanol, Ammonia 등 다양한 유체 대응", "극저온(-196℃) ~ 고온/고압 환경 대응", "고객 사양에 최적화된 설계 및 제작"],
   },
   {
-    id: "engineering", title: "Technical Support &\nEngineering Service", image: "/assets/hero-reference.svg",
+    id: "engineering", title: "Technical Support &\nEngineering Service",
     lines: ["밸브 유동·응력 해석 및 설계 평가", "LNG 밸브 재료·구조 설계"],
     bullets: ["장비 설계·제작·유지보수", "발전·조선 분야 R&D 및 기술 지원", "발전 설비·장비 설계 지원"],
   },
   {
-    id: "actuator", title: "Actuator", image: "/assets/product-special-gas.svg",
+    id: "actuator", title: "Actuator",
     lines: ["모터식 액추에이터 (MOV)", "에어 모터식 액추에이터 (AOV)", "공압식 액추에이터 (POV)", "유압식 액추에이터 (HOV)"],
     bullets: ["다양한 구동 방식 제공", "안정성 및 신뢰성 확보", "고객 환경에 최적화된 제어 솔루션"],
   },
   {
-    id: "rnd", title: "R&D", image: "/assets/product-lh2.svg",
+    id: "rnd", title: "R&D",
     lines: ["LNG용 양방향 밀봉장치 개발 ('20~'21)", "수소 생산·공급 설비용 자동 제어밸브 개발 ('21~)"],
     bullets: ["액체 수소용 자동 제어밸브 개발 (21.06~23.05)", "극저온 액화가스용 능동 제어밸브 개발 (23.07~25.06)"],
   },
@@ -46,7 +47,7 @@ export default function BusinessPage() {
           <div className="business-reference-grid">
             {areas.map((area) => (
               <article className="business-reference-card" id={area.id} key={area.id}>
-                <div className="business-reference-image"><img src={area.image} alt={area.title.replace("\n", " ")} /></div>
+                <div className="business-reference-image"><PlaceholderImage title="사업분야 이미지" description={`${area.title.replace("\n", " ")} 비주얼 등록 예정`} variant="compact" /></div>
                 <div className="business-reference-text">
                   <h2>{area.title.split("\n").map((part, i) => <span key={part}>{part}{i === 0 && area.title.includes("\n") ? <br /> : null}</span>)}</h2><i></i>
                   {area.lines.map((line) => <p key={line}>{line}</p>)}
