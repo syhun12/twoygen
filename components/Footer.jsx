@@ -27,9 +27,9 @@ export default function Footer() {
 
         <div className="footer-sitemap">
           <div><strong>회사소개</strong><Link href="/company/greeting">인사말</Link><Link href="/company/history">주요연혁</Link><Link href="/company/certification">인증/특허</Link><Link href="/company/location">오시는 길</Link></div>
-          <div><strong>사업분야</strong><Link href="/business#valve">Valve</Link><Link href="/business#actuator">Actuator</Link><Link href="/business#engineering">Engineering Service</Link><Link href="/business#rnd">R&D</Link></div>
-          <div><strong>제품소개</strong><Link href="/products/cryogenic">Cryogenic Valve</Link><Link href="/products/special-gas">Special Valve for Gas</Link><Link href="/products/liquid-hydrogen">Liquid Hydrogen Valve</Link><Link href="/products/high-temp">High Temp. & High Pressure Control Valve</Link><Link href="/products/back-wash-filter">Back Wash Filter</Link></div>
-          <div><strong>기술력</strong><Link href="/technology/engineering">설계·개발</Link><Link href="/technology/cryogenic">극저온 기술</Link><Link href="/technology/cryogenic">고압 가스 대응</Link><Link href="/technology/quality">품질·시험</Link></div>
+          <div><strong>사업분야</strong><Link href="/business#valve">Valve</Link><Link href="/business#automation">Automation Machinery</Link><Link href="/business#engineering">Engineering Service</Link><Link href="/business#rnd">R&D</Link></div>
+          <div><strong>제품소개</strong><Link href="/products/cryogenic">Cryogenic Valve</Link><Link href="/products/high-temp">High Temp. & High Pressure Control Valve</Link><Link href="/products/special-gas">Special Valve for Gas</Link><Link href="/products/back-wash-filter">Auto Back Wash Filter</Link><Link href="/products/automation-machinery">Automation Machinery</Link></div>
+          <div><strong>기술력</strong><Link href="/technology/engineering">내진·유동·구동해석</Link><Link href="/technology/cryogenic">극저온·고압 기술</Link><Link href="/products/automation-machinery">자동제어 기계</Link><Link href="/technology/quality">품질·시험</Link></div>
           <div><strong>납품실적</strong><Link href="/performance">주요 적용 분야</Link><Link href="/performance">프로젝트 사례</Link><Link href="/performance">수출·공급 이력</Link></div>
           <div><strong>공지/문의</strong><Link href="/support/notice">공지사항</Link><Link href="/support/contact">상담/문의</Link></div>
         </div>
