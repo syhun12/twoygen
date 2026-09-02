@@ -6,37 +6,31 @@ import styles from "./MainHeroCarousel.module.css";
 
 const slides = [
   {
-    eyebrow: "INDUSTRIAL SPECIAL VALVE & AUTOMATION MACHINERY",
+    eyebrow: "SPECIAL VALVE TECHNOLOGY",
     title: <>Technical Innovation,<br /><em>Sustainable Tomorrow</em></>,
-    subtitle: <>LNG · LN2 · LH2 · Methanol · Ammonia<br />Special Valve for Cryogenic</>,
-    description: <>특수 밸브와 자동화기계, Fluid Device 기술을 기반으로<br />에너지·원자력·해양 산업의 새로운 내일을 열어갑니다.</>,
-    primary: { label: "제품 문의하기", href: "/support/contact" },
-    secondary: { label: "카탈로그 다운로드", href: "/support/library" },
-    image: "/assets/hero-reference.svg",
-    imageAlt: "투와이젠 밸브 및 산업 설비 이미지",
-    visualType: "wide",
-  },
-  {
-    eyebrow: "SPECIAL VALVE FOR CRYOGENIC",
-    title: <>Extreme Environment,<br /><em>Reliable Technology</em></>,
-    subtitle: <>-253℃ Liquid Hydrogen · 1000bar H2<br />Cryogenic & High Pressure Valve</>,
-    description: <>극저온부터 초고압 환경까지 안정적인 제어를 위한<br />투와이젠의 특수 밸브 기술을 제공합니다.</>,
+    subtitle: <>Cryogenic · High Pressure · Special Gas Valve<br />LNG · LN2 · LH2 · Methanol · Ammonia</>,
+    description: <>극저온·고압·특수가스 운전환경에 대응하는<br />투와이젠의 정밀 밸브 기술을 제공합니다.</>,
     primary: { label: "밸브 제품 보기", href: "/products" },
-    secondary: { label: "기술력 보기", href: "/technology/cryogenic" },
-    image: "/assets/product-lh2.svg",
-    imageAlt: "액화수소용 극저온 밸브",
-    visualType: "product",
+    secondary: { label: "제품 문의하기", href: "/support/contact" },
+    background: "/assets/hero-main-valve.svg",
   },
   {
-    eyebrow: "NUCLEAR · MARINE · AUTOMATION ENGINEERING",
-    title: <>Engineering & Automation,<br /><em>Built for Industry</em></>,
-    subtitle: <>Valve · Automation Machinery · Engineering Service · R&D<br />Auto Back Wash Filter & Fluid Device</>,
-    description: <>원자력·선박·플랜트의 운전 조건을 검토하고<br />내진·유동·구동해석부터 설계·제작·시험까지 연결합니다.</>,
-    primary: { label: "사업분야 보기", href: "/business" },
-    secondary: { label: "기술 문의하기", href: "/support/contact" },
-    image: "/assets/product-filter.svg",
-    imageAlt: "투와이젠 Auto Back Wash Filter",
-    visualType: "product",
+    eyebrow: "NUCLEAR & FLUID CONTROL ENGINEERING",
+    title: <>Reliable Engineering,<br /><em>Critical Applications</em></>,
+    subtitle: <>Nuclear · Auto Back Wash Filter · Fluid Device<br />Engineering & Supply Experience</>,
+    description: <>원자력 설비의 유체제어 및 여과 시스템을 중심으로<br />설계·제작·시험·공급까지 프로젝트 요구조건에 대응합니다.</>,
+    primary: { label: "납품실적 보기", href: "/performance" },
+    secondary: { label: "Back Wash Filter", href: "/products/back-wash-filter" },
+    background: "/assets/hero-main-nuclear.svg",
+  },
+  {
+    eyebrow: "AUTOMATION MACHINERY & FLUID DEVICE",
+    title: <>Smart Automation,<br /><em>Built for Industry</em></>,
+    subtitle: <>Automation Machinery · Fluid Device · Control System<br />Design · Manufacturing · Technical Support</>,
+    description: <>자동화기계와 산업용 Fluid Device를 기반으로<br />현장 조건에 맞는 장비와 제어 시스템을 설계·제작합니다.</>,
+    primary: { label: "자동화 설비 보기", href: "/products/automation-machinery" },
+    secondary: { label: "사업분야 보기", href: "/business" },
+    background: "/assets/hero-main-automation.svg",
   },
 ];
 
@@ -71,14 +65,16 @@ export default function MainHeroCarousel() {
       onFocusCapture={() => setPaused(true)}
       onBlurCapture={() => setPaused(false)}
     >
-      <div className={`container ${styles.inner}`}>
-        <div className={styles.slides}>
-          {slides.map((slide, index) => (
-            <article
-              className={`${styles.slide} ${index === active ? styles.active : ""}`}
-              aria-hidden={index !== active}
-              key={slide.eyebrow}
-            >
+      <div className={styles.slides}>
+        {slides.map((slide, index) => (
+          <article
+            className={`${styles.slide} ${index === active ? styles.active : ""}`}
+            aria-hidden={index !== active}
+            key={slide.eyebrow}
+            style={{ backgroundImage: `url(${slide.background})` }}
+          >
+            <div className={styles.shade}></div>
+            <div className={`container ${styles.slideInner}`}>
               <div className={styles.copy}>
                 <span className={styles.eyebrow}>{slide.eyebrow}</span>
                 <h1>{slide.title}</h1>
@@ -89,14 +85,12 @@ export default function MainHeroCarousel() {
                   <Link href={slide.secondary.href} className="ref-btn outline">{slide.secondary.label} <span>→</span></Link>
                 </div>
               </div>
+            </div>
+          </article>
+        ))}
+      </div>
 
-              <div className={`${styles.visual} ${styles[slide.visualType]}`}>
-                <img src={slide.image} alt={slide.imageAlt} />
-              </div>
-            </article>
-          ))}
-        </div>
-
+      <div className={`container ${styles.overlay}`}>
         <div className={styles.fluids} aria-label="적용 유체">
           {fluids.map(([name, icon]) => <div key={name}><b>{icon}</b><span>{name}</span></div>)}
         </div>
