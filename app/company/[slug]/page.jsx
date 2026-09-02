@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import SubHero from "@/components/SubHero";
 import PlaceholderImage from "@/components/PlaceholderImage";
+import styles from "./CompanyPage.module.css";
 
 const companyTabs = [
   ["greeting", "인사말"], ["history", "주요연혁"], ["certification", "인증·특허"], ["location", "오시는 길"],
@@ -22,6 +23,25 @@ function Tabs({ current }) {
   return <div className="filter-row">{companyTabs.map(([slug, label]) => <Link key={slug} className={`filter-chip ${current === slug ? "active" : ""}`} href={`/company/${slug}`}>{label}</Link>)}</div>;
 }
 
+function CompanyVideoPlaceholder() {
+  return (
+    <div className={styles.videoSection}>
+      <div className={styles.videoHeading}>
+        <span>Company Video</span>
+        <h2>투와이젠 기업소개 영상</h2>
+        <p>추후 YouTube 영상 링크를 연결할 수 있는 16:9 비율의 영상 영역입니다.</p>
+      </div>
+      <div className={styles.videoFrame}>
+        <div className={styles.videoPlaceholder}>
+          <div className={styles.playIcon}>▶</div>
+          <strong>YouTube Video Area</strong>
+          <small>영상 링크 등록 예정</small>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function CompanyPage({ params }) {
   const slug = params.slug;
   if (!companyTabs.some(([key]) => key === slug)) notFound();
@@ -32,7 +52,7 @@ export default function CompanyPage({ params }) {
       <section className="page-shell"><div className="container"><Tabs current={slug} /><div className="content-grid">
         <div className="prose"><span className="eyebrow">About TWOYGEN</span><h2>에너지 산업의 내일을 설계하는 기업, 투와이젠</h2><p>안녕하십니까. 투와이젠은 극저온·고압 특수 밸브와 Auto Back Wash Filter, 자동화기계 및 엔지니어링 솔루션을 중심으로 산업 현장의 요구조건에 대응하는 기술 중심 기업입니다.</p><p>LNG, LN₂, LH₂, Methanol, Ammonia 등 다양한 가스 환경뿐 아니라 원자력·해양·플랜트 분야의 설계 및 공급 경험을 바탕으로 제품 선정부터 설계·제작·시험·기술지원까지 고객의 프로젝트에 필요한 범위를 함께 검토합니다.</p><p>앞으로도 기술 혁신과 품질 향상을 통해 신뢰할 수 있는 산업 파트너로 성장하겠습니다.</p><div className="signature"><strong>투와이젠 임직원 일동</strong></div></div>
         <PlaceholderImage title="회사 소개 이미지" description="기업 소개 비주얼 등록 예정" variant="tall" />
-      </div><div className="stat-row"><div className="stat"><strong>2020</strong><span>설립연도</span></div><div className="stat"><strong>-253℃</strong><span>극저온 대응</span></div><div className="stat"><strong>1000 bar</strong><span>수소가스 대응</span></div><div className="stat"><strong>Engineering</strong><span>맞춤형 기술지원</span></div></div></div></section>
+      </div><div className="stat-row"><div className="stat"><strong>2020</strong><span>설립연도</span></div><div className="stat"><strong>-253℃</strong><span>극저온 대응</span></div><div className="stat"><strong>1000 bar</strong><span>수소가스 대응</span></div><div className="stat"><strong>Engineering</strong><span>맞춤형 기술지원</span></div></div><CompanyVideoPlaceholder /></div></section>
     </>;
   }
 
